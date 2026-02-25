@@ -1,8 +1,10 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from app.api.routes import router as root_api_router
 from app.api.v1.endpoints.health import router as health_router
-from app.api.v1.router import router as api_router
+from app.api.v1.endpoints.jobs import router as jobs_router
+from app.api.v1.endpoints.videos import router as videos_router
 from app.core.config import get_settings
 
 settings = get_settings()
@@ -17,4 +19,7 @@ app.add_middleware(
 )
 
 app.include_router(health_router)
-app.include_router(api_router, prefix=settings.api_v1_prefix)
+# Keep root-level routes to match demo contract paths (/videos/*, /jobs/*).
+app.include_router(videos_router)
+app.include_router(jobs_router)
+app.include_router(root_api_router)
