@@ -41,8 +41,14 @@ class MediaPipePoseModel(BasePoseModel):
         try:
             import mediapipe as mp
 
-            self._state.landmarks = mp.solutions.pose.PoseLandmark
-            self._state.pose = mp.solutions.pose.Pose(
+             # Some builds don't expose `mp.solutions` at top-level.
+            try:
+                mp_pose = mp.solutions.pose  # type: ignore[attr-defined]
+            except AttributeError:
+                from mediapipe.python.solutions import pose as mp_pose  # type: ignore
+
+            self._state.landmarks = mp_pose.PoseLandmark
+            self._state.pose = mp_pose.Pose(
                 static_image_mode=False,
                 model_complexity=1,
                 enable_segmentation=False,
