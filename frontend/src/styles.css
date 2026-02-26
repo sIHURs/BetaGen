@@ -1,62 +1,258 @@
 :root {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  color: #1f2937;
-  background: linear-gradient(120deg, #f8fafc, #e2e8f0);
+  color-scheme: light;
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+  color: #0d1b2a;
+  background: radial-gradient(circle at 0% 0%, #eff6ff 0%, #dbeafe 30%, #f8fafc 100%);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-height: 100vh;
 }
 
-.container {
-  max-width: 720px;
-  margin: 32px auto;
-  padding: 16px;
+.page {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 28px 16px 56px;
+  display: grid;
+  gap: 16px;
 }
 
-.subtitle {
-  color: #475569;
+.hero {
+  border-radius: 14px;
+  padding: 18px;
+  color: #f8fafc;
+  background: linear-gradient(135deg, #0f172a, #155e75 45%, #0e7490 100%);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.25);
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.hero p {
+  margin: 8px 0 0;
+  color: #dbeafe;
 }
 
 .panel {
   background: #ffffff;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
+  border: 1px solid #dbe4f0;
+  border-radius: 14px;
   padding: 16px;
-  margin-top: 16px;
   display: grid;
   gap: 12px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.08);
+}
+
+.panel h2 {
+  margin: 0;
+  font-size: 19px;
+  color: #0f172a;
+}
+
+.field-group {
+  display: grid;
+  gap: 6px;
 }
 
 label {
-  display: grid;
-  gap: 6px;
+  font-size: 14px;
   font-weight: 600;
 }
 
-input {
-  border: 1px solid #94a3b8;
+input,
+select,
+button {
+  font: inherit;
+}
+
+input[type="file"],
+input[type="number"],
+input[type="range"],
+select {
+  width: 100%;
+}
+
+input[type="number"],
+select {
+  border: 1px solid #a8b6ca;
   border-radius: 8px;
-  padding: 8px;
-  font-size: 14px;
+  padding: 8px 10px;
+  background: #fff;
+}
+
+input[type="range"] {
+  accent-color: #0284c7;
 }
 
 button {
   border: 0;
-  border-radius: 8px;
-  background: #0f766e;
-  color: #ffffff;
-  padding: 10px 14px;
-  font-weight: 600;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-weight: 700;
+  color: #f8fafc;
+  background: #0369a1;
   cursor: pointer;
 }
 
+button:hover {
+  background: #075985;
+}
+
 button:disabled {
-  opacity: 0.7;
+  opacity: 0.6;
   cursor: not-allowed;
 }
 
+button.primary {
+  background: #0f766e;
+}
+
+button.primary:hover {
+  background: #115e59;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.inline-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #c5d2e2;
+  border-radius: 8px;
+  padding: 8px 10px;
+  min-height: 40px;
+}
+
+.meta-box,
+.code-box {
+  background: #f8fafc;
+  border: 1px solid #dbe4f0;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
+}
+
+.code-box {
+  max-height: 180px;
+  overflow: auto;
+  font-size: 12px;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  background: #e2e8f0;
+}
+
+.pill.pending,
+.pill.running {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+.pill.completed,
+.pill.done {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.pill.failed {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+.spinner {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border: 2px solid #93c5fd;
+  border-top-color: #1d4ed8;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.elapsed {
+  font-size: 13px;
+  color: #334155;
+}
+
+.overlay-video {
+  width: 100%;
+  max-height: 440px;
+  border-radius: 10px;
+  border: 1px solid #dbe4f0;
+  background: #0f172a;
+}
+
+.keypoint-canvas {
+  width: 100%;
+  max-height: 380px;
+  border-radius: 10px;
+  border: 1px solid #334155;
+  background: #0c1320;
+}
+
+.hint {
+  color: #475569;
+  font-size: 13px;
+}
+
 .error {
-  color: #b91c1c;
+  margin: 0;
+  border-radius: 10px;
+  padding: 10px;
+  border: 1px solid #fecaca;
+  background: #fef2f2;
+  color: #991b1b;
   font-weight: 600;
+}
+
+.footnote {
+  text-align: right;
+  color: #475569;
+  font-size: 13px;
+}
+
+@media (max-width: 760px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+  }
 }
